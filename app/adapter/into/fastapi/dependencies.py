@@ -1,7 +1,6 @@
 import os
-from distutils.command import upload
 
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 from fastapi.security import HTTPBasicCredentials, HTTPBearer
 from hex_lib.adapter.out.db.dynamo import DynamodbAdapter
 from hex_lib.adapter.out.queue.sqs import SqsTaskAdapter
@@ -22,6 +21,8 @@ def get_current_user(
 ) -> UserData:
     # attempt to get user id from authorizer logic
     user_id = request.scope.get("aws", {}).get("context", {}).get("user_id")
+    if not user_id:
+        raise HTTPException(status_code=403, detail="User not found")
     return UserData(user_id=user_id)
 
 
