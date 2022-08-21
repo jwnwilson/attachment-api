@@ -22,4 +22,4 @@ app.include_router(attachment_route.router, dependencies=PROTECTED)
 
 @app.get("/")
 async def version():
-    return {"message": "attachment-api service"}
+    return {"message": "Attachment service"}

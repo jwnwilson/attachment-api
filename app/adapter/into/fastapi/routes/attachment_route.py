@@ -45,7 +45,7 @@ async def save_attachment(
 ) -> dict:
     # call create use case
     data: dict = save_attachment_uc.save(
-        attachment,
+        attachment.name,
         storage_adapter=storage_adapter,
         current_user=current_user
     )
