@@ -20,10 +20,3 @@ variable "aws_secret_key" {
 variable "project" {
   default = "attachment-api"
 }
-
-variable "ecr_url" {}
-
-variable "ecr_repo" {
-  description = "Name of container image repository"
-  default     = "attachment_api"
-}

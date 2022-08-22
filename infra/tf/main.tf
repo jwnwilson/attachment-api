@@ -21,6 +21,7 @@ module "attachment_api" {
   environment       = var.environment
   project           = "attachment"
   ecr_url           = var.ecr_url
+  region            = var.aws_region
 }
 
 module "api_gateway" {
