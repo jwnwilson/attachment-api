@@ -5,7 +5,7 @@ set -x
 
 region="eu-west-1"
 aws_ecr="675468650888.dkr.ecr.eu-west-1.amazonaws.com"
-ecr_repo_name="attachment-api_api"
+ecr_repo_name="attachment-api"
 latest_image=`docker images -q attachment-api-api`
 # Use last commit datetime as git tag
 docker_tag=$(git log -n1 --pretty='format:%cd' --date=format:'%Y%m%d%H%M%S')
