@@ -1,11 +1,7 @@
 import logging
-import re
-import uuid
 from typing import List
 
-import requests
 from hex_lib.ports.storage import StorageAdapter
-from hex_lib.ports.user import UserData
 
 logger = logging.getLogger(__name__)
 

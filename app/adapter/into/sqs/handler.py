@@ -11,7 +11,7 @@ ENVIRONMENT = os.environ["ENVIRONMENT"]
 
 
 def lambda_handler(event, context) -> List[dict]:
-    tasks_data = []
+    tasks_data: List[dict] = []
     records = event["Records"]
 
     logger.info(f"Processing {len(records)} record(s) from SQS")

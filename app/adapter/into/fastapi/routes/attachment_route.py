@@ -22,14 +22,9 @@ async def get_attachment(
     attachment_id: str,
     storage_adapter=Depends(get_storage_adapter),
     current_user=Depends(get_current_user),
-) -> str:
-    # call create use case
-    attachment_entity = get_attachment_uc.get(
-        storage_adapter=storage_adapter, current_user=current_user
-    )
-    data: dict = attachment_entity.get(
-        attachment_id,
-    )
+) -> dict:
+    download_url = get_attachment_uc.get(attachment_id, storage_adapter=storage_adapter)
+    data: dict = {"download_url": download_url}
     return data
 
 
@@ -40,7 +35,8 @@ async def save_attachment(
     current_user=Depends(get_current_user),
 ) -> dict:
     # call create use case
-    data: dict = save_attachment_uc.save(
-        attachment.name, storage_adapter=storage_adapter, current_user=current_user
+    upload_url: str = save_attachment_uc.save(
+        attachment.name, storage_adapter=storage_adapter
     )
+    data: dict = {"upload_url": upload_url}
     return data
