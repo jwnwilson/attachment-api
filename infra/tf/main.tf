@@ -21,6 +21,7 @@ module "attachment_api" {
   environment       = var.environment
   project           = "attachment"
   ecr_url           = var.ecr_url
+  docker_tag        = var.docker_tag
   region            = var.aws_region
   aws_access_key    = var.aws_access_key
   aws_secret_key    = var.aws_secret_key
