@@ -22,6 +22,9 @@ module "attachment_api" {
   project           = "attachment"
   ecr_url           = var.ecr_url
   region            = var.aws_region
+  aws_access_key    = var.aws_access_key
+  aws_secret_key    = var.aws_secret_key
+  lambda_command    = ["app.adapter.into.fastapi.lambda.handler"]
 }
 
 module "api_gateway" {
