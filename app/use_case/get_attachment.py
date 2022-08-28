@@ -1,7 +1,8 @@
 from typing import List
 
-from hex_lib.ports.user import UserData
 from hex_lib.ports.storage import StorageAdapter
+from hex_lib.ports.user import UserData
+
 from app.domain.attachment import AttachmentEntity
 
 

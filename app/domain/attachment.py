@@ -21,13 +21,9 @@ class BaseEntity:
 class AttachmentEntity(BaseEntity):
     def get(self, attachment_id: str) -> str:
         """Get data by id"""
-        url: str = self.storage_adapter.get_public_url(
-            attachment_id
-        )
+        url: str = self.storage_adapter.get_public_url(attachment_id)
         return url
 
     def save(self, attachment_id: str) -> str:
-        url: str = self.storage_adapter.upload_url(
-            attachment_id
-        )
+        url: str = self.storage_adapter.upload_url(attachment_id)
         return url
