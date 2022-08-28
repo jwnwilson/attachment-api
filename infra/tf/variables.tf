@@ -37,5 +37,5 @@ variable "api_subdomain" {
 
 variable "ecr_url" {
   description = "Name of container image repository"
-  default     = "attachment_service_api"
+  default     = "675468650888.dkr.ecr.eu-west-1.amazonaws.com/attachment-api"
 }

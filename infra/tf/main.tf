@@ -52,8 +52,7 @@ resource "aws_iam_policy" "s3-lambda-policy" {
         "Effect": "Allow",
         "Action": "s3:*",
         "Resource": [
-          "arn:aws:s3:::jwnwilson-pdf-template-${var.environment}/*",
-          "arn:aws:s3:::jwnwilson-pdf-task-${var.environment}*/",
+          "arn:aws:s3:::jwnwilson-attachments-${var.environment}/*",
           "*"
         ]
     }
