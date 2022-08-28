@@ -36,6 +36,7 @@ module "api_gateway" {
   domain            = "jwnwilson.co.uk"
   api_subdomain     = "attachment-${var.environment}"
   project           = "attachment"
+  authorizer_name   = "authorizer_api_gw_${var.environment}"
 }
 
 
