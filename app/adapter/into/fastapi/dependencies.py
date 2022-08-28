@@ -17,7 +17,9 @@ def get_current_user(
 ) -> UserData:
     # attempt to get user id from authorizer logic
     print("request.scope", request.scope)
-    user_id = request.scope.get("aws", {}).get("context", {}).get("user_id")
+    print("aws.context", str(request.scope.get("aws.context")))
+    print("request.scope.aws.event.requestContext", request.scope.get("aws.event", {}).get("requestContext"))
+    user_id = request.scope.get("aws.context", {}).get("user_id")
     if not user_id:
         raise HTTPException(status_code=403, detail="User not found")
     return UserData(user_id=user_id)
