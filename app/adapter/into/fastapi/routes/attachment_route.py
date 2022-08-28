@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from use_case import get_attachment as get_attachment_uc
 from use_case import save_attachment as save_attachment_uc
 
-from .....ports.attachment import Attachment
+from ports.attachment import Attachment
 
 logger = logging.getLogger(__name__)
 
