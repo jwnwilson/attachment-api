@@ -41,8 +41,12 @@ module "api_gateway" {
 }
 
 resource "aws_iam_user" "upload_user" {
-  name = "attachment_upload_user_${var.environment}"
-  path = "/"
+  name    = "attachment_upload_user_${var.environment}"
+  path    = "/"
+}
+
+resource "aws_iam_access_key" "upload_user" {
+  user    = aws_iam_user.upload_user.name
 }
 
 resource "aws_iam_user_policy" "upload_user_s3" {
