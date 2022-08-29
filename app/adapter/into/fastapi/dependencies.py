@@ -30,7 +30,7 @@ def get_current_user(
 def get_storage_adapter(
     user_data: UserData = Depends(get_current_user),
 ) -> StorageAdapter:
-    bucket_name = f"jwnwilson-attachment-api-{ENVIRONMENT}"
+    bucket_name = f"jwnwilson-attachments-{ENVIRONMENT}"
     return S3Adapter(
         {"bucket": bucket_name}, user=user_data, upload_prefix="attachment-api"
     )
