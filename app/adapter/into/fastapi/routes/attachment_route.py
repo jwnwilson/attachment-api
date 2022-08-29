@@ -37,8 +37,8 @@ async def save_attachment(
     """
     Request an upload url for a file.
 
-    Upload file using a multipart/form-data POST request to the upload_url.
-    Set "Content-Type", "multipart/form-data" header
+    Upload file using a POST request to the upload_url.
+    Set "Content-Type", "application/json" header
     Set fields in data payload
     Send file in data payload with key "file"
     """
@@ -50,7 +50,7 @@ async def save_attachment(
     upload_data: UploadData = UploadData(
         upload_url=upload_url_data.upload_url,
         fields=upload_url_data.fields,
-        attachment_id=attachment_id,
+        attachment_id=attachment_id
     )
 
     return upload_data

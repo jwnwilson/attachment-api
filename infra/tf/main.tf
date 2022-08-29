@@ -50,7 +50,7 @@ resource "aws_iam_access_key" "upload_user" {
 }
 
 resource "aws_iam_user_policy" "upload_user_s3" {
-  name = "email_upload_user_s3_${var.environment}"
+  name = "attachment_upload_user_s3_${var.environment}"
   user = aws_iam_user.upload_user.name
 
   policy = <<EOF
