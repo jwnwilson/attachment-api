@@ -138,8 +138,9 @@ resource "aws_s3_bucket" "attachment_storage" {
   {
     "Version": "2008-10-17",
     "Statement": [{
-      "Sid": "AllowAccess",
+      "Sid": "AllowAccessIn",
       "Effect": "Allow",
+      "Principal": "*",
       "Action": ["s3:*"],
       "Resource": ["arn:aws:s3:::jwnwilson-attachments-${var.environment}/*" ]
     }]
