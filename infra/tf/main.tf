@@ -61,8 +61,7 @@ resource "aws_iam_user_policy" "upload_user_s3" {
     "Effect": "Allow",
     "Action": ["s3:*"],
     "Resource": [
-      "arn:aws:ssm:eu-west-1:675468650888:parameter/attachment-api/upload_access_id_${var.environment}",
-      "arn:aws:ssm:eu-west-1:675468650888:parameter/attachment-api/upload_secret_key_${var.environment}"
+      "arn:aws:s3:::jwnwilson-attachments-${var.environment}/*",
     ]
   }]
 }
