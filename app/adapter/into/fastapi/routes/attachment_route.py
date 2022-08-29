@@ -50,7 +50,7 @@ async def save_attachment(
     upload_data: UploadData = UploadData(
         upload_url=upload_url_data.upload_url,
         fields=upload_url_data.fields,
-        attachment_id=attachment_id
+        attachment_id=attachment_id,
     )
 
     return upload_data
