@@ -29,7 +29,7 @@ module "attachment_api" {
 }
 
 module "api_gateway" {
-  source = "github.com/jwnwilson/terraform-aws-modules/modules/apigateway"
+  source = "github.com/jwnwilson/terraform-aws-modules/modules/apigateway-authorizer"
 
   environment       = var.environment
   lambda_invoke_arn = module.attachment_api.lambda_function_invoke_arn
