@@ -61,7 +61,7 @@ resource "aws_iam_user_policy" "upload_user_s3" {
     "Effect": "Allow",
     "Action": ["s3:*"],
     "Resource": [
-      "arn:aws:s3:::jwnwilson-attachments-${var.environment}/*",
+      "arn:aws:s3:::jwnwilson-attachments-${var.environment}/*"
     ]
   }]
 }
