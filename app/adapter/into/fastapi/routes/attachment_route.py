@@ -3,6 +3,7 @@ from typing import List
 
 from adapter.into.fastapi.dependencies import get_current_user, get_storage_adapter
 from fastapi import APIRouter, Depends, HTTPException
+from hex_lib.ports.storage import UploadUrlData
 from ports.attachment import Attachment
 from use_case import get_attachment as get_attachment_uc
 from use_case import save_attachment as save_attachment_uc
@@ -32,10 +33,9 @@ async def save_attachment(
     attachment: Attachment,
     storage_adapter=Depends(get_storage_adapter),
     current_user=Depends(get_current_user),
-) -> dict:
+) -> UploadUrlData:
     # call create use case
-    upload_url: str = save_attachment_uc.save(
+    upload_data: UploadUrlData = save_attachment_uc.save(
         attachment.name, storage_adapter=storage_adapter
     )
-    data: dict = {"upload_url": upload_url}
-    return data
+    return upload_data

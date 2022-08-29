@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from hex_lib.ports.storage import StorageAdapter
+from hex_lib.ports.storage import StorageAdapter, UploadUrlData
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +20,6 @@ class AttachmentEntity(BaseEntity):
         url: str = self.storage_adapter.get_public_url(attachment_id)
         return url
 
-    def save(self, attachment_id: str) -> str:
-        url: str = self.storage_adapter.upload_url(attachment_id)
-        return url
+    def save(self, attachment_id: str) -> UploadUrlData:
+        url_data: UploadUrlData = self.storage_adapter.upload_url(attachment_id)
+        return url_data
