@@ -40,6 +40,44 @@ module "api_gateway" {
   authorizer_name   = "authorizer_api_gw_${var.environment}"
 }
 
+resource "aws_iam_user" "upload_user" {
+  name = "attachment_upload_user_${var.environment}"
+  path = "/"
+}
+
+resource "aws_iam_user_policy" "upload_user_s3" {
+  name = "email_upload_user_s3_${var.environment}"
+  user = aws_iam_user.upload_user.name
+
+  policy = <<EOF
+{
+  "Version": "2008-10-17",
+  "Statement": [{
+    "Sid": "AllowAccessInAWS",
+    "Effect": "Allow",
+    "Action": ["s3:*"],
+    "Resource": [
+      "arn:aws:ssm:eu-west-1:675468650888:parameter/attachment-api/upload_access_id_${var.environment}",
+      "arn:aws:ssm:eu-west-1:675468650888:parameter/attachment-api/upload_secret_key_${var.environment}"
+    ]
+  }]
+}
+EOF
+}
+
+resource "aws_ssm_parameter" "upload_access_id" {
+  name  = "/attachment-api/upload_access_id_${var.environment}"
+  type  = "String"
+  value = aws_iam_access_key.upload_user.id
+}
+
+resource "aws_ssm_parameter" "upload_secret_key" {
+  name  = "/attachment-api/upload_secret_key_${var.environment}"
+  type  = "String"
+  value = aws_iam_access_key.upload_user.secret
+}
+
+
 
 resource "aws_iam_policy" "s3-lambda-policy" {
   name        = "${var.project}-s3-lambda-policy-${var.environment}"
@@ -56,6 +94,27 @@ resource "aws_iam_policy" "s3-lambda-policy" {
         "Resource": [
           "arn:aws:s3:::jwnwilson-attachments-${var.environment}/*",
           "*"
+        ]
+    },
+    {
+        "Effect": "Allow",
+        "Action": [
+            "ssm:DescribeParameters",
+            "ssm:GetParameters",
+            "ssm:GetParameter"
+        ],
+        "Resource": [
+          "arn:aws:ssm:eu-west-1:675468650888:parameter/attachment-api/upload_access_id_${var.environment}",
+          "arn:aws:ssm:eu-west-1:675468650888:parameter/attachment-api/upload_secret_key_${var.environment}"
+        ]
+    },
+    {
+        "Effect": "Allow",
+        "Action": [
+            "ses:*"
+        ],
+        "Resource": [
+          "arn:aws:ses:eu-west-1:675468650888:*"
         ]
     }
   ]
