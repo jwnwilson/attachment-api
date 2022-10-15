@@ -12,8 +12,8 @@ root_prefix = f"/"
 PROTECTED = [Depends(get_current_user)]
 
 app = FastAPI(
-    title="attachment-api Service",
-    description="attachment-api description",
+    title="Attachment Service",
+    description="Upload and get attachments",
     version="0.0.1",
     root_path=root_prefix,
 )
